@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package proto;
+option go_package = ".;proto";
+
+service HelloWorld {
+    rpc sayHello (HelloReq) returns (Response) {}
+    rpc sayHi (HiReq) returns (stream Response) {}
+    rpc sum (stream sumReq) returns (Response) {}
+}
+
+message HelloReq {
+    string name = 1;
+}
+
+message HiReq {
+    repeated string names = 1;
+}
+
+message sumReq {
+    int32 num = 1;
+}
+
+message Response {
+    string message = 1;
+}
